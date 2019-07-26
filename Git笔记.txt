@@ -1,0 +1,67 @@
+什么是Git？
+	最先进的  分布式版本控制系统（另：集中式版本控制系统）			by linus
+	实现文本、代码、网页等跟踪管理
+
+分布式/集中式
+	*集中式：所有PC必须通过联网与服务器连接
+	*分布式：所有PC之间可实现互联互通（PC类似服务器）
+
+设置git用户名和邮箱：
+	*git config --global user.name "用户名"
+	*git config --global user.email "邮箱"
+
+#创建版本库：存放需要Git跟进文件版本的文件目录
+	*创建目录，作为版本库
+	*初始化版本库
+		1.进入到版本库所在目录
+		2.执行初始化命令	git init
+
+#把文件添加到版本库
+	*创建一个文件									//文件进入工作区
+		*查看版本库状态		git status			
+	*添加文件至版本库		git add 文件名			//文件进入暂存区
+	*提交文件至版本库		git commit -m "信息"	//信息：自定义，如添加了一个文件		！此命令将暂存区所有文件提交入版本库，标记信息一致
+	*查看文件每个版本		git log
+		*更改/删除文件，则按上述步骤重复
+
+#时光穿梭：针对已上传至版本库的文件，已有对应log信息
+	*回到旧版本				git reset --hard 版本
+		版本：
+			*HEAD:代表当前版本	HEAD^:代表上一个版本	HEAD~100:代表上100个版本		//HEAD指针指向当前版本文件
+			*或写版本号
+
+	*重新回到新版本			git reflog				//查看历史所有版本的信息，找到对应版本号
+
+#修改撤销：
+	1.针对个人在工作区修改的文件，用版本库的HEAD文件替换工作区的文件；
+		git checkout -- 文件名
+	2.修改的文件且已提交到暂存区，清除暂存区文件：
+		git reset HEAD 文件名			+         步骤1
+	3.修改的文件被commit：版本回退
+	4.上传服务器？没救了！！
+
+#删除文件
+	不想删
+		git checkout -- 文件名
+	“真”想删
+		删库跑路
+
+
+
+Github：互联版Git
+	
+	将本机的SSH（加密传输协议）添加到对应账号的Github库
+		1.在本地创建SSH key
+			ssh-keygen -t rsa -C "email"
+		2.找到SSH key所在的路径
+		3.复制id_rsa.pub内容至Github中
+		4.测试是否连接成功
+			ssh -T git@github.com
+	
+	远程和本地连接
+		git remote add origin "链接地址"		//地址可为html或者SSH地址
+
+	本地仓库推送到远程
+		git push -u origin master				//第一次需-u
+
+		git@github.com:tfpudge/Tao.git
