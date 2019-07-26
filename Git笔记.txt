@@ -65,3 +65,5 @@ Github：互联版Git
 		git push -u origin master				//第一次需-u
 
 		git@github.com:tfpudge/Tao.git
+
+挺好的！！！加油！！
